@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Send Slack Notification
         env:
-          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
         run: |
           TODAY=$(date +%F)
           ACTOR="${{ github.actor }}"
