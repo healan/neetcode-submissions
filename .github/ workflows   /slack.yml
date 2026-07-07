@@ -1,0 +1,20 @@
+name: Notify Slack on Commit
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Slack notification
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            --data "{
+              \"text\": \" New NeetCode Commit\n👤 Author: ${{ github.actor }}\n Message: ${{ github.event.head_commit.message }}\n /commit/${{ github.sha }}\"
+            }" \
+            ${{ secrets.SLACK_WEBHOOK }}
